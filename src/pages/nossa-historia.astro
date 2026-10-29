@@ -1,0 +1,65 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import passaro from "../assets/historia/passaro.jpg";
+---
+
+<BaseLayout
+  title="NOSSA HISTÓRIA | Madeiras Capit"
+  caminho="/nossa-historia"
+  atual="nossa-historia"
+  fundo="var(--color-cinza-claro)"
+>
+  <div class="bg-cinza-claro h-[70px]"></div>
+  <section class="bg-white pt-[49px] pb-[30px]">
+    <div class="mx-auto grid max-w-[980px] gap-10 px-4 md:grid-cols-[417px_335px] md:gap-[73px] md:px-[53px]">
+      <div>
+        <h1 class="text-verde text-[40px] leading-[1.4] font-bold sm:text-[53px]">
+          Nossa história
+        </h1>
+        <div class="mt-[16px] max-w-[417px] text-[14px] leading-[19.6px] text-black">
+          <p class="font-bold">
+            Há 29 anos, em 1997, começava uma trajetória construída com
+            trabalho, experiência e compromisso com o mercado madeireiro.
+          </p>
+          <p>
+            Foi em Santa Catarina que demos os primeiros passos, iniciando uma
+            operação que, ao longo dos anos, cresceu, se estruturou e conquistou
+            espaço no mercado.
+          </p>
+          <p>
+            Com o passar do tempo, ampliamos nossa atuação, fortalecemos nossa
+            estrutura e desenvolvemos uma operação preparada para atender
+            diferentes necessidades da indústria, da logística e do transporte.
+          </p>
+          <p>
+            Hoje, depois de quase três décadas de história, seguimos expandindo
+            nossos horizontes.
+          </p>
+          <p>
+            A Capitão do Mato também está presente na Amazônia, unindo a
+            experiência construída ao longo dos anos à força e à dimensão de uma
+            das principais regiões madeireiras do país.
+          </p>
+          <p>
+            De Santa Catarina para novas fronteiras, seguimos construindo uma
+            história baseada em qualidade, confiança e solidez.
+          </p>
+          <p>29 anos de história. Uma operação que continua crescendo.</p>
+        </div>
+      </div>
+      <div class="bg-cinza-claro mx-auto h-[597px] w-[335px] max-w-full self-start overflow-hidden rounded-[40px] p-[2px] shadow-[0_0_6px_rgba(0,0,0,0.25)] md:mx-0">
+        <Image
+          src={passaro}
+          alt="images (7).jpg"
+          width={331}
+          height={593}
+          widths={[331, 662]}
+          sizes="331px"
+          class="size-full rounded-[38px] object-cover"
+        />
+      </div>
+    </div>
+  </section>
+  <div class="bg-cinza-claro h-[14px]"></div>
+</BaseLayout>

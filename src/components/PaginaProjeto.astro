@@ -1,0 +1,92 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Voltar from "./Voltar.astro";
+import type { Projeto } from "../config/projetos";
+
+interface Props {
+  projeto: Projeto;
+}
+
+const { projeto } = Astro.props;
+const numero = projeto.slug.replace("projeto-", "");
+---
+
+<BaseLayout
+  title={`PROJETO ${numero} | Madeiras Capit`}
+  caminho={`/${projeto.slug}`}
+  fundo="var(--color-cinza-site)"
+>
+  <section class="relative bg-[#fafafa]">
+    <div class="absolute inset-x-0 top-0 h-[600px] overflow-hidden md:h-[750px]">
+      <Image
+        src={projeto.fundo}
+        alt=""
+        width={1440}
+        height={900}
+        widths={[720, 1440, 2160]}
+        sizes="100vw"
+        loading="eager"
+        class="size-full object-cover"
+      />
+    </div>
+    <div class="relative px-4 pt-[200px] md:pt-[301px]">
+      <div class="mx-auto min-h-[528px] max-w-[1200px] bg-white px-6 pt-[69px] pb-12 md:px-[186px]">
+        <h1
+          class="font-helvetica text-[19px] leading-normal font-light text-black"
+          style={
+            projeto.larguraTitulo
+              ? `max-width:${projeto.larguraTitulo}px`
+              : undefined
+          }
+        >
+          {projeto.titulo}
+        </h1>
+        <div class="border-azul-linha mt-[15px] h-[5px] w-[60px] border-t"></div>
+        <p class="font-helvetica mt-[23px] max-w-[775px] text-[14px] leading-normal font-light text-black">
+          {projeto.texto}
+        </p>
+        <Voltar
+          href={projeto.linkTopo.href}
+          rotulo={projeto.linkTopo.rotulo}
+          class="mt-[57px] font-bold text-[#060e25]"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto mt-[70px] flex max-w-[980px] flex-col gap-[50px] px-4 md:px-0">
+    {projeto.galeria.map((imagem) => (
+      <Image
+        src={imagem}
+        alt=""
+        width={980}
+        height={980}
+        widths={[490, 980, 1960]}
+        sizes="(min-width: 980px) 980px, 100vw"
+        class="aspect-square w-full object-cover"
+      />
+    ))}
+  </section>
+
+  <div class="flex flex-col items-center pt-[10px] pb-[53px]">
+    <a
+      href="#topo"
+      aria-label={projeto.linkRodape}
+      class="flex h-[31px] w-[7px] items-center justify-center"
+    >
+      <Icon
+        name="seta-esquerda"
+        class="block h-[7px] w-[31px] shrink-0 rotate-90"
+        aria-hidden="true"
+      />
+    </a>
+    <a
+      href="#topo"
+      class="font-helvetica mt-[14px] text-[14px] leading-[16px] font-bold text-black hover:underline"
+    >
+      {projeto.linkRodape}
+    </a>
+  </div>
+</BaseLayout>

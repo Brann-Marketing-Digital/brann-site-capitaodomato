@@ -1,0 +1,22 @@
+---
+interface Props {
+  linhas: string[];
+  /** Tamanho da fonte de cada linha (px). */
+  tamanhos?: number[];
+}
+
+const { linhas, tamanhos = [25] } = Astro.props;
+---
+
+<li class="bg-verde-escuro text-verde flex h-[70px] w-full items-center justify-center rounded-[25px] px-2 text-center font-bold uppercase">
+  <span class="block leading-[28px]">
+    {linhas.map((linha, i) => (
+      <span
+        class="block"
+        style={`font-size:${tamanhos[i] ?? tamanhos[tamanhos.length - 1]}px;line-height:${(tamanhos[0] ?? 25) > 20 ? 35 : 28}px`}
+      >
+        {linha}
+      </span>
+    ))}
+  </span>
+</li>

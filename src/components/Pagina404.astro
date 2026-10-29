@@ -1,0 +1,43 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { comBase } from "../config/caminho";
+import ilustracao from "../assets/marca/erro-404.png";
+
+interface Props {
+  caminho: string;
+}
+
+const { caminho } = Astro.props;
+---
+
+<BaseLayout
+  title="404 | Madeiras Capit"
+  caminho={caminho}
+  fundo="#fff"
+  semMoldura
+>
+  <main class="font-helvetica mx-auto max-w-[980px] px-4 pt-[88px] pb-[100px] md:pl-[174px]">
+    <Image
+      src={ilustracao}
+      alt=""
+      width={339}
+      height={235}
+      class="block h-auto w-[339px] max-w-full"
+    />
+    <h1 class="mt-[44px] text-[40px] md:ml-[29px] leading-normal font-light text-[#3eb8ea] sm:text-[66px]">
+      There’s Nothing Here...
+    </h1>
+    <p class="mt-[16px] max-w-[400px] md:ml-[33px] text-[22px] leading-[37.4px] font-light text-[#184a56]">
+      We can’t find the page you’re looking for.
+      <br />
+      Check the URL, or head back home.
+    </p>
+    <a
+      href={comBase("/")}
+      class="mt-[40px] inline-flex md:ml-[29px] h-[56px] w-[198px] items-center justify-center rounded-[40px] border-2 border-[#4eb7f5] text-[22px] leading-[30.8px] font-light text-[#4eb7f5] transition-colors hover:bg-[#4eb7f5] hover:text-white"
+    >
+      Go Home
+    </a>
+  </main>
+</BaseLayout>

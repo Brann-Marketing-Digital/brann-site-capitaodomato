@@ -1,0 +1,66 @@
+---
+import { Image } from "astro:assets";
+import { site } from "../config/site";
+import rodapeWhatsapp from "../assets/social/rodape-whatsapp.png";
+import rodapeFacebook from "../assets/social/rodape-facebook.png";
+import rodapeInstagram from "../assets/social/rodape-instagram.png";
+import contatoWhatsapp from "../assets/social/contato-whatsapp.png";
+import contatoFacebook from "../assets/social/contato-facebook.png";
+import contatoInstagram from "../assets/social/contato-instagram.png";
+
+interface Props {
+  /** "rodape" (20px, página inicial) ou "contato" (23px). */
+  variante: "rodape" | "contato";
+  class?: string;
+}
+
+const { variante, class: classe } = Astro.props;
+
+const tamanho = variante === "rodape" ? 20 : 23;
+const icones =
+  variante === "rodape"
+    ? {
+        whatsapp: rodapeWhatsapp,
+        facebook: rodapeFacebook,
+        instagram: rodapeInstagram,
+      }
+    : {
+        whatsapp: contatoWhatsapp,
+        facebook: contatoFacebook,
+        instagram: contatoInstagram,
+      };
+
+const itens = [
+  { rotulo: "Whatsapp", href: site.whatsapp.url, imagem: icones.whatsapp },
+  { rotulo: "Facebook", href: site.redes.facebook, imagem: icones.facebook },
+  { rotulo: "Instagram", href: site.redes.instagram, imagem: icones.instagram },
+];
+---
+
+<ul
+  aria-label="Redes sociais"
+  class:list={[
+    "flex items-center",
+    variante === "rodape" ? "gap-5" : "gap-[5px]",
+    classe,
+  ]}
+>
+  {itens.map((item) => (
+    <li>
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noreferrer noopener"
+        aria-label={item.rotulo}
+      >
+        <Image
+          src={item.imagem}
+          alt={item.rotulo}
+          width={tamanho}
+          height={tamanho}
+          class="block"
+        />
+      </a>
+    </li>
+  ))}
+</ul>

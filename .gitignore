@@ -1,0 +1,32 @@
+# Dependências
+node_modules/
+
+# Build do Astro
+dist/
+.astro/
+
+# Ambiente
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# macOS / editores
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# README fica só local, não vai para o GitHub
+/README.md
+
+# Arquivos locais (IA, pesquisa, editor): não vão para o GitHub
+/CLAUDE.md
+/AGENTS.md
+.claude/
+.agents/
+/docs/

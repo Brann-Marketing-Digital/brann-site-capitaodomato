@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Voltar from "./Voltar.astro";
+import type { Membro } from "../config/equipe";
+
+interface Props {
+  membro: Membro;
+}
+
+const { membro } = Astro.props;
+---
+
+<BaseLayout
+  title={membro.titulo}
+  caminho={`/${membro.slug}`}
+  fundo="var(--color-cinza-claro)"
+>
+  <section class="bg-white pt-[165px] pb-[160px] md:min-h-[809px] max-md:pt-[60px] max-md:pb-[60px]">
+    <div class="mx-auto grid max-w-[980px] gap-x-[35px] gap-y-8 px-4 md:grid-cols-[365px_1fr] md:px-[21px]">
+      <div>
+        <Image
+          src={membro.foto}
+          alt=""
+          width={365}
+          height={307}
+          widths={[365, 730]}
+          sizes="365px"
+          class="block h-auto w-full max-w-[365px] object-cover"
+        />
+        <Voltar
+          href={membro.link.href}
+          rotulo={membro.link.rotulo}
+          class="mt-[12px] font-bold"
+        />
+      </div>
+      <div class="font-helvetica text-black md:pt-[4px]">
+        <h1 class="max-w-full text-[24px] leading-normal font-bold">
+          {membro.nome}
+        </h1>
+        <div class="border-azul-linha mt-[15px] h-[5px] w-[60px] border-t"></div>
+        <h2 class="mt-[11px] text-[14px] leading-[22.4px] font-bold">
+          {membro.cargo}
+        </h2>
+        <p class="mt-[45px] max-w-[538px] text-[14px] leading-[18px] font-light">
+          {membro.texto}
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

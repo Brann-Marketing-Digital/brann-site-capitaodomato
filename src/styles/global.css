@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@import "@fontsource/montserrat/400.css";
+@import "@fontsource/montserrat/700.css";
+@import "@fontsource/montserrat/900.css";
+
+@theme {
+  --color-verde-escuro: #093c05;
+  --color-verde: #7ea221;
+  --color-lima: #bada55;
+  --color-cinza-site: #e9ebeb;
+  --color-cinza-claro: #e8e8e8;
+  --color-rodape-texto: #e8e8e8;
+  --color-azul-linha: #060e25;
+
+  /* Fontes: Montserrat (Google Fonts) e Helvetica Neue (sistema). */
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-cinza-site);
+    font-family: var(--font-montserrat);
+    color: #000;
+  }
+}

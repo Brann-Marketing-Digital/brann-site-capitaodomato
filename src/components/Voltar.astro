@@ -1,0 +1,27 @@
+---
+import { Icon } from "astro-icon/components";
+import { comBase } from "../config/caminho";
+
+interface Props {
+  href: string;
+  rotulo: string;
+  class?: string;
+}
+
+const { href, rotulo, class: classe } = Astro.props;
+---
+
+<a
+  href={comBase(href)}
+  class:list={[
+    "font-helvetica inline-flex items-center gap-[10px] text-[14px] leading-[22.4px] text-black hover:underline",
+    classe,
+  ]}
+>
+  <Icon
+    name="seta-esquerda"
+    class="h-[7px] w-[31px] shrink-0"
+    aria-hidden="true"
+  />
+  <span>{rotulo}</span>
+</a>

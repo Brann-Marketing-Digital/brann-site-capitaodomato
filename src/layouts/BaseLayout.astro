@@ -1,0 +1,81 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../config/site";
+import { comBase } from "../config/caminho";
+import type { IdNavegacao } from "../config/site";
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Caminho da página, usado no canonical e no og:url (ex.: "/contato"). */
+  caminho?: string;
+  /** Item de menu em destaque. */
+  atual?: IdNavegacao;
+  /** Cor de fundo do <body> (cada página tem a sua). */
+  fundo?: string;
+  /** Rodapé completo (logo, endereço e redes) — só existe na página inicial. */
+  rodapeCompleto?: boolean;
+  /** Páginas "soltas" (404 e fullscreen) não têm cabeçalho nem rodapé. */
+  semMoldura?: boolean;
+  jsonLd?: Record<string, unknown>;
+}
+
+const {
+  title,
+  description,
+  caminho = Astro.url.pathname,
+  atual,
+  fundo = "var(--color-cinza-site)",
+  rodapeCompleto = false,
+  semMoldura = false,
+  jsonLd,
+} = Astro.props;
+
+const canonical = site.url + (caminho === "/" ? "" : caminho);
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    {!site.indexavel && <meta name="robots" content="noindex" />}
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" sizes="192x192" href={comBase("/favicon.png")} type="image/png" />
+    <link rel="shortcut icon" href={comBase("/favicon.ico")} />
+    <link rel="apple-touch-icon" href={comBase("/favicon.png")} />
+    <meta property="og:title" content={title} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.nome} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={site.url + "/og.png"} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:image" content={site.url + "/og.png"} />
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body style={`background-color:${fundo}`} id="topo">
+    {semMoldura ? (
+      <slot />
+    ) : (
+      <>
+        <Header atual={atual} />
+        <main>
+          <slot />
+        </main>
+        <Footer completo={rodapeCompleto} />
+      </>
+    )}
+  </body>
+</html>

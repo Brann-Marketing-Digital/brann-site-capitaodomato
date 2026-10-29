@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+import { site } from "../config/site";
+import Redes from "./Redes.astro";
+import logoVerde from "../assets/marca/logo-verde.png";
+
+interface Props {
+  completo?: boolean;
+}
+
+const { completo = false } = Astro.props;
+---
+
+<footer>
+  {completo && (
+    <div class="bg-cinza-site">
+      <div class="mx-auto flex max-w-[980px] flex-col items-center gap-8 px-4 py-[26px] sm:flex-row sm:justify-center sm:gap-[87px]">
+        <Image
+          src={logoVerde}
+          alt="capitao-do-mato-logo-4000px.png"
+          width={305}
+          height={133}
+          class="h-auto w-[305px] max-w-full"
+        />
+        <div class="font-helvetica text-verde-escuro relative h-[108px] w-[286px] max-w-full text-[14px] leading-[16px] font-light leading-[16px]">
+          <p>
+            Rodovia KM 85 BR 174, Zona Rural, Rio Preto da Eva-AM -&nbsp;
+            <br />
+            &nbsp;
+            <br />
+            {site.contato.email}
+            <br />
+            &nbsp;
+            <br />
+            {site.contato.telefoneRodape}
+          </p>
+          <Redes variante="rodape" class="absolute top-[88px] left-[133px]" />
+        </div>
+      </div>
+    </div>
+  )}
+  <div class="bg-verde-escuro font-helvetica text-rodape-texto h-[48px] text-center text-[12px] leading-[48px] font-light">
+    {site.credito}
+  </div>
+</footer>

@@ -1,0 +1,141 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CartaoProduto from "../components/CartaoProduto.astro";
+import Selo from "../components/Selo.astro";
+import { site } from "../config/site";
+import { comBase } from "../config/caminho";
+import logoBranco from "../assets/marca/logo-branco.png";
+import heroPoster from "../assets/home/hero-poster.jpg";
+import zonaFranca from "../assets/home/zona-franca-manaus.jpg";
+import paletes from "../assets/home/paletes.jpg";
+import embalagens from "../assets/home/embalagens-madeira.png";
+import sustentabilidade from "../assets/home/sustentabilidade.png";
+
+const selos = [
+  { linhas: ["ISO 9001"], tamanhos: [25] },
+  { linhas: ["ISO 14001"], tamanhos: [25] },
+  { linhas: ["ESG"], tamanhos: [25] },
+  { linhas: ["PPB"], tamanhos: [25] },
+  { linhas: ["AUDITORIAS", "INTERNAS"], tamanhos: [20] },
+  { linhas: ["CLIENTES", "INTERNACIONAIS"], tamanhos: [20, 18] },
+];
+---
+
+<BaseLayout
+  title="PÁGINA INICIAL | Madeiras Capit"
+  caminho="/"
+  atual="inicio"
+  rodapeCompleto
+  jsonLd={site.jsonLd}
+>
+  <!-- Hero com vídeo -->
+  <section class="bg-verde-escuro relative h-[300px] overflow-hidden sm:h-[420px] md:h-[539px]">
+    <div class="absolute inset-0 opacity-[0.86]">
+      <video
+        class="size-full object-cover"
+        poster={heroPoster.src}
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        aria-hidden="true"
+      >
+        <source src={comBase("/videos/hero-capitao-do-mato.mp4")} type="video/mp4" />
+      </video>
+    </div>
+    <div class="relative flex h-full items-center justify-center">
+      <Image
+        src={logoBranco}
+        alt="CAPITÃO DO MATO LOGO BRANCO.png"
+        width={600}
+        height={262}
+        loading="eager"
+        class="h-auto w-[min(600px,78%)] md:-mt-[0px] md:mb-[0px]"
+      />
+    </div>
+  </section>
+
+  <!-- Faixa Zona Franca -->
+  <section class="bg-verde-escuro relative flex min-h-[110px] items-center justify-center overflow-hidden px-4 py-5 md:h-[175px]">
+    <Image
+      src={zonaFranca}
+      alt="Zona-Franca-de-Manaus-e-os-Aspectos-da-Reforma-Tributaria-Pinheiro-Guimaraes.jpg"
+      width={1440}
+      height={175}
+      widths={[720, 1440, 2160]}
+      sizes="100vw"
+      class="absolute inset-0 size-full object-cover opacity-[0.19]"
+    />
+    <h2 class="relative text-center text-[26px] leading-[1.4] font-bold sm:text-[36px] md:text-[48px]">
+      <span class="text-verde">Estamos na</span>
+      <span class="text-white"> zona franca de Manaus</span>
+    </h2>
+  </section>
+
+  <!-- Produtos em destaque -->
+  <section class="px-4 pt-[63px]">
+    <h2 class="font-helvetica text-center text-[24px] leading-normal font-bold text-black">
+      Nossos Produtos em Destaque
+    </h2>
+    <div class="mx-auto mt-[60px] grid max-w-[980px] gap-10 md:grid-cols-[486px_478px] md:justify-between md:gap-x-4">
+      <CartaoProduto
+        posicao="cima"
+        titulo="Linha de paletes"
+        texto="Contamos com estoque preparado para atender diferentes demandas, distribuição eficiente e produtos desenvolvidos para garantir segurança e praticidade em cada etapa da sua logística."
+        href="/projeto-1"
+        imagem={paletes}
+        alt="paletes capitao do mato"
+      />
+      <div class="md:mt-[10px]">
+        <CartaoProduto
+          posicao="baixo"
+          titulo="Embalagens de madeira"
+          texto="Desenvolvemos embalagens de madeira personalizadas de acordo com a necessidade da sua operação, garantindo resistência, segurança e praticidade para o transporte dos seus produtos."
+          href="/projeto-2"
+          imagem={embalagens}
+          alt="embalagens de madeira"
+        />
+      </div>
+    </div>
+  </section>
+
+  <div class="border-verde mx-auto mt-[70px] w-[640px] max-w-[88%] border-t"></div>
+
+  <!-- Requisitos -->
+  <section class="px-4 pt-[68px] pb-[53px]">
+    <h2 class="mx-auto max-w-[520px] text-center text-[26px] leading-[1.2] font-bold sm:text-[33px]">
+      <span class="text-verde-escuro">Produto ideal</span>
+      <span class="text-verde"> para empresas com requisitos de:</span>
+    </h2>
+    <ul class="mx-auto mt-[34px] grid max-w-[617px] grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-3 sm:gap-x-7">
+      {selos.map((selo) => (
+        <Selo linhas={selo.linhas} tamanhos={selo.tamanhos} />
+      ))}
+    </ul>
+  </section>
+
+  <!-- Sustentabilidade -->
+  <section class="bg-verde px-4 py-10 md:h-[250px] md:py-0">
+    <div class="mx-auto flex max-w-[980px] flex-col items-center gap-6 md:h-full md:flex-row md:justify-between md:px-[35px]">
+      <div class="max-w-[667px] md:pt-[0px]">
+        <h2 class="text-verde-escuro text-[24px] leading-[1.4] font-normal sm:text-[30px]">
+          Compromisso com a <strong class="font-bold">sustentabilidade!</strong>
+        </h2>
+        <p class="mt-[22px] text-[16px] leading-[1.4] text-white sm:text-[19px]">
+          Nosso processo produtivo prioriza o aproveitamento da matéria-prima
+          florestal para fabricação de paletes, reduzindo desperdícios e
+          promovendo o uso responsável e legal dos recursos naturais.
+        </p>
+      </div>
+      <Image
+        src={sustentabilidade}
+        alt="sustentabilidade-lalan-do-brasil.png"
+        width={157}
+        height={188}
+        class="h-auto w-[157px] shrink-0 md:mr-[0px]"
+      />
+    </div>
+  </section>
+</BaseLayout>

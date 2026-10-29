@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { comBase } from "../config/caminho";
+
+interface Props {
+  titulo: string;
+  texto: string;
+  href: string;
+  imagem: ImageMetadata;
+  alt: string;
+  /** "cima": o cartão invade o topo da foto; "baixo": o cartão sai pela base da foto. */
+  posicao: "cima" | "baixo";
+}
+
+const { titulo, texto, href, imagem, alt, posicao } = Astro.props;
+---
+
+<article
+  class:list={[
+    "relative mx-auto w-full max-w-[486px] md:mx-0",
+    posicao === "cima" ? "md:pt-[100px]" : "md:pb-[145px]",
+  ]}
+>
+  <a href={comBase(href)} class="block">
+    <Image
+      src={imagem}
+      alt={alt}
+      width={imagem.width}
+      height={imagem.height}
+      widths={[486, 972]}
+      sizes="(min-width: 768px) 486px, 100vw"
+      class="block h-auto w-full object-cover md:h-[580px]"
+    />
+  </a>
+  <div
+    class:list={[
+      "bg-verde-escuro relative z-[1] mx-4 -mt-16 min-h-[259px] rounded-[50px] px-[60px] py-[38px] md:absolute md:mx-0 md:mt-0 md:w-[400px]",
+      posicao === "cima"
+        ? "md:top-0 md:left-[65px]"
+        : "md:bottom-0 md:left-[39px]",
+    ]}
+  >
+    <h3 class="text-verde text-[14px] leading-normal font-bold">{titulo}</h3>
+    <div class="border-verde mt-[18px] h-[5px] w-[60px] border-t"></div>
+    <p class="mt-[20px] text-[14px] leading-normal text-white">{texto}</p>
+  </div>
+</article>
