@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../config/site";
+---
+
+<BaseLayout
+  title="POLÍTICA DE PRIVACIDADE | Madeiras Capit"
+  description={`Como a ${site.nomeMarca} trata os dados pessoais de quem visita este site, conforme a LGPD.`}
+  caminho="/politica-de-privacidade"
+  fundo="var(--color-cinza-claro)"
+>
+  <div class="bg-cinza-claro h-[70px]"></div>
+  <section class="bg-white pt-[49px] pb-[60px]">
+    <div class="mx-auto max-w-[820px] px-4 md:px-[53px]">
+      <h1 class="text-verde text-[40px] leading-[1.4] font-bold sm:text-[53px]">
+        Política de Privacidade
+      </h1>
+      <p class="mt-2 text-[14px] text-black/60">
+        Última atualização: 31 de outubro de 2026
+      </p>
+
+      <div class="[&_h2]:text-verde mt-8 text-[16px] leading-[1.6] text-black [&_a]:underline [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-[22px] [&_h2]:font-bold [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-6">
+        <p>
+          Esta política explica como a {site.nomeMarca} trata os dados pessoais
+          de quem visita este site, de acordo com a Lei Geral de Proteção de
+          Dados (Lei nº 13.709/2018, a LGPD). A controladora desses dados é a{" "}
+          {site.nomeMarca}.
+        </p>
+
+        <h2>Quais dados coletamos</h2>
+        <p>Este site não tem formulários. Tratamos apenas:</p>
+        <ul>
+          <li>
+            os dados que você nos passar por WhatsApp, telefone ou e-mail;
+          </li>
+          <li>
+            dados técnicos registrados pelo provedor que hospeda o site, como
+            endereço IP, data e hora e navegador, para funcionamento e
+            segurança.
+          </li>
+        </ul>
+
+        <h2>Para que usamos</h2>
+        <p>
+          Usamos seus dados só para responder ao seu contato, enviar orçamentos
+          que você pediu e manter o site funcionando com segurança. As bases
+          legais são a execução de procedimentos preliminares a um contrato, a
+          seu pedido, e o nosso legítimo interesse em manter o site seguro (art.
+          7º, V e IX, da LGPD).
+        </p>
+
+        <h2>Com quem compartilhamos</h2>
+        <p>Não vendemos nem alugamos seus dados. Eles passam apenas por:</p>
+        <ul>
+          <li>WhatsApp (Meta), quando você nos envia uma mensagem;</li>
+          <li>Google, que exibe o mapa na página de contato;</li>
+          <li>o provedor de hospedagem do site;</li>
+          <li>autoridades públicas, quando a lei exigir.</li>
+        </ul>
+        <p>
+          Alguns desses serviços podem armazenar dados em servidores fora do
+          Brasil, sempre com as garantias previstas no art. 33 da LGPD.
+        </p>
+
+        <h2>Cookies</h2>
+        <p>
+          Este site não usa cookies de análise, rastreamento ou publicidade. O
+          mapa do Google pode definir cookies próprios, regidos pela política de
+          privacidade do Google.
+        </p>
+
+        <h2>Por quanto tempo guardamos</h2>
+        <p>
+          Guardamos seus dados pelo tempo necessário para atender ao seu pedido
+          e cumprir obrigações legais. Depois disso, eles são apagados.
+        </p>
+
+        <h2>Seus direitos</h2>
+        <p>
+          Você pode pedir, a qualquer momento: confirmação de que tratamos seus
+          dados, acesso a eles, correção, anonimização, bloqueio ou eliminação,
+          portabilidade, informação sobre com quem compartilhamos e revogação do
+          consentimento, quando for o caso (art. 18 da LGPD). Também pode
+          reclamar à Autoridade Nacional de Proteção de Dados (ANPD).
+        </p>
+
+        <h2>Contato</h2>
+        <p>
+          Para exercer seus direitos ou tirar dúvidas sobre esta política,
+          escreva para{" "}
+          <a href={`mailto:${site.contato.email}`}>{site.contato.email}</a>.
+        </p>
+
+        <h2>Alterações</h2>
+        <p>
+          Esta política pode ser atualizada. A data no topo da página indica a
+          versão em vigor.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

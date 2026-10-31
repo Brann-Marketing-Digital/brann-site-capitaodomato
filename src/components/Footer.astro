@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { site } from "../config/site";
+import { comBase } from "../config/caminho";
 import Redes from "./Redes.astro";
 import logoVerde from "../assets/marca/logo-verde.png";
 
@@ -39,7 +40,10 @@ const { completo = false } = Astro.props;
       </div>
     </div>
   )}
-  <div class="bg-verde-escuro font-helvetica text-rodape-texto h-[48px] text-center text-[12px] leading-[48px] font-light">
-    {site.credito}
+  <div class="bg-verde-escuro font-helvetica text-rodape-texto min-h-[48px] px-4 py-[14px] text-center text-[12px] leading-[20px] font-light">
+    {site.credito} ·{" "}
+    <a href={comBase("/politica-de-privacidade")} class="hover:underline">
+      Política de Privacidade
+    </a>
   </div>
 </footer>
